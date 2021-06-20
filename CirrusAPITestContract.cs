@@ -27,97 +27,97 @@ public class CirrusAPITestContract : SmartContract
 
     public Address Owner
     {
-        get => State.GetAddress(nameof(Owner));
-        set => State.SetAddress(nameof(Owner), value);
+        get => PersistentState.GetAddress(nameof(Owner));
+        set => PersistentState.SetAddress(nameof(Owner), value);
     }
 
     public bool TestBool
     {
-        get => State.GetBool("TestBool");
-        private set => State.SetBool("TestBool", value);
+        get => PersistentState.GetBool("TestBool");
+        private set => PersistentState.SetBool("TestBool", value);
     }
 
     public byte TestByte
     {
         get 
         {
-            var valueArray = State.GetBytes("TestByte");
+            var valueArray = PersistentState.GetBytes("TestByte");
             return valueArray[0];
         }
         private set
         {
             byte[] valueArray = { value };
-            State.SetBytes("TestByte", valueArray);
+            PersistentState.SetBytes("TestByte", valueArray);
         }
     }
 
     public char TestChar
     {
-        get => State.GetChar("TestChar");
-        private set => State.SetChar("TestChar", value);
+        get => PersistentState.GetChar("TestChar");
+        private set => PersistentState.SetChar("TestChar", value);
     }
 
     public string TestString
     {
-        get => State.GetString("TestString");
-        private set => State.SetString("TestString", value);
+        get => PersistentState.GetString("TestString");
+        private set => PersistentState.SetString("TestString", value);
     }
 
     public uint TestUInt32
     {
-        get => State.GetUInt32("TestUInt32");
-        private set => State.SetUInt32("TestUInt32", value);
+        get => PersistentState.GetUInt32("TestUInt32");
+        private set => PersistentState.SetUInt32("TestUInt32", value);
     }
 
     public int TestInt32
     {
-        get => State.GetInt32("TestInt32");
-        private set => State.SetInt32("TestInt32", value);
+        get => PersistentState.GetInt32("TestInt32");
+        private set => PersistentState.SetInt32("TestInt32", value);
     }
 
     public ulong TestUInt64
     {
-        get => State.GetUInt64("TestUInt64");
-        private set => State.SetUInt64("TestUInt64", value);
+        get => PersistentState.GetUInt64("TestUInt64");
+        private set => PersistentState.SetUInt64("TestUInt64", value);
     }
 
     public long TestInt64
     {
-        get => State.GetInt64("TestInt64");
-        private set => State.SetInt64("TestInt64", value);
+        get => PersistentState.GetInt64("TestInt64");
+        private set => PersistentState.SetInt64("TestInt64", value);
     }
 
     public Address TestAddress
     {
-        get => State.GetAddress("TestAddress");
-        private set => State.SetAddress("TestAddress", value);
+        get => PersistentState.GetAddress("TestAddress");
+        private set => PersistentState.SetAddress("TestAddress", value);
     }
 
     public byte[] TestByteArray
     {
-        get => State.GetBytes("TestByteArray");
-        private set => State.SetBytes("TestByteArray", value);
+        get => PersistentState.GetBytes("TestByteArray");
+        private set => PersistentState.SetBytes("TestByteArray", value);
     }
 
     public UInt128 TestUInt128
     {
-        get => State.GetUInt128("TestUInt128");
-        private set => State.SetUInt128("TestUInt128", value);
+        get => PersistentState.GetUInt128("TestUInt128");
+        private set => PersistentState.SetUInt128("TestUInt128", value);
     }
 
     public UInt256 TestUInt256
     {
-        get => State.GetUInt256("TestUInt256");
-        private set => State.SetUInt256("TestUInt256", value);
+        get => PersistentState.GetUInt256("TestUInt256");
+        private set => PersistentState.SetUInt256("TestUInt256", value);
     }
 
     public string TestMethod(int messageIndex, string message)
     {
         string key = $"Message[{messageIndex}]";
-        State.SetString(key, message);
+        PersistentState.SetString(key, message);
         Log(new TestMessageLog { index = messageIndex, message = message });
         // Testing retrieval after setting.
-        return $"{key}: {State.GetString(key)}";
+        return $"{key}: {PersistentState.GetString(key)}";
     }
 
     public struct TestMessageLog
